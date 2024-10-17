@@ -21,7 +21,7 @@ if ($_SESSION["perfil"] == "Especial") {
         <div class="box">
             <div class="box-header with-border">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarEntradaVehiculo">
-                    Registrar Entrada
+                    Registrar Carro
                 </button>
             </div>
 
@@ -38,6 +38,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <th>Monto Total</th>
                             <th>Estado de Pago</th>
                             <th>Acciones</th>
+                            <th>Código QR</th> <!-- Nueva columna para el código QR -->
                         </tr>
                     </thead>
                     <tbody>
@@ -45,78 +46,106 @@ if ($_SESSION["perfil"] == "Especial") {
                         $item = null;
                         $valor = null;
 
-                        $vehiculos = ControladorVehiculos::ctrMostrarEntradasVehiculos($item, $valor);
+                        $vehiculos = ControladorCarro::ctrMostrarEntradasVehiculos($item, $valor);
 
                         foreach ($vehiculos as $key => $value) {
                             echo '<tr>
-                                    <td>' . ($key + 1) . '</td>
-                                    <td>' . $value["tipo_vehiculo"] . '</td>
-                                    <td>' . $value["nombre_vehiculo"] . '</td>
-                                    <td>' . $value["numero_placa"] . '</td>
-                                    <td>' . $value["hora_entrada"] . '</td>
-                                    <td>' . ($value["hora_salida"] ? $value["hora_salida"] : 'En curso') . '</td>
-                                    <td>' . $value["monto_total"] . '</td>
-                                    <td>' . ($value["estado_pago"] == 1 ? 'Pagado' : 'No Pagado') . '</td>
-                                    <td>
-                                        <div class="btn-group">';
+                                <td>' . ($key + 1) . '</td>
+                                <td>' . $value["tipo_vehiculo"] . '</td>
+                                <td>' . $value["nombre_vehiculo"] . '</td>
+                                <td>' . $value["numero_placa"] . '</td>
+                                <td>' . $value["hora_entrada"] . '</td>
+                                <td>' . ($value["hora_salida"] ? $value["hora_salida"] : 'En curso') . '</td>
+                                <td>' . $value["monto_total"] . '</td>
+                                <td>' . ($value["estado_pago"] == 1 ? 'Pagado' : 'No Pagado') . '</td>
+                                <td>
+                                    <div class="btn-group">';
                             if (!$value["hora_salida"]) {
                                 echo '<button class="btn btn-success btnMarcarSalida" idVehiculo="' . $value["id"] . '"><i class="fa fa-check"></i></button>';
-
                             }
                             echo '</div>
-                                    </td>
-                                  </tr>';
+                                </td>
+                                <td>';
+                            // Mostrar el código QR
+                            if (!empty($value["codigo_qr"])) {
+                                echo '<img src="qrs/qr_' . $value["id"] . '.svg" alt="Código QR" style="width:50px; height:50px;" />'; // Ajusta el tamaño según tus necesidades
+                            } else {
+                                echo 'No disponible';
+                            }
+                            echo '</td>
+                              </tr>';
                         }
-                        
                         ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
+
 </div>
 
 <!-- Modal para registrar la entrada -->
 <div id="modalRegistrarEntradaVehiculo" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form id="formRegistrarEntradaVehiculo" enctype="multipart/form-data">
-    <div class="modal-header" style="background:#3c8dbc; color:white">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registrar Entrada del Vehículo</h4>
-    </div>
-    <div class="modal-body">
-        <div class="box-body">
-            <!-- Tipo de Vehículo -->
-            <div class="form-group">
-                <label for="tipoVehiculo">Tipo de Vehículo</label>
-                <select class="form-control input-lg" name="tipoVehiculo" id="tipoVehiculo" required>
-                    <option value="">Seleccionar tipo de vehículo</option>
-                    <option value="Sedan">Sedan</option>
-                    <option value="Hatchback">Hatchback</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Moto">Moto</option>
-                    <option value="Pick-up">Pick-up</option>
-                </select>
-            </div>
-            <!-- Nombre del Vehículo -->
-            <div class="form-group">
-                <label for="nombreVehiculo">Nombre del Vehículo</label>
-                <input type="text" class="form-control input-lg" name="nombreVehiculo" id="nombreVehiculo" placeholder="Ingresar nombre del vehículo" required>
-            </div>
-            <!-- Número de Placa -->
-            <div class="form-group">
-                <label for="numeroPlaca">Número de Placa</label>
-                <input type="text" class="form-control input-lg" name="numeroPlaca" id="numeroPlaca" placeholder="Ingresar número de placa" required>
-            </div>
+            <form id="formRegistrarEntradaVehiculo" enctype="multipart/form-data">
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registrar Entrada del Vehículo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <!-- Tipo de Vehículo -->
+                        <div class="form-group">
+                            <label for="tipoVehiculo">Tipo de Vehículo</label>
+                            <select class="form-control input-lg" name="tipoVehiculo" id="tipoVehiculo" required>
+                                <option value="">Seleccionar tipo de vehículo</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Moto">Moto</option>
+                                <option value="Pick-up">Pick-up</option>
+                            </select>
+                        </div>
+                        <!-- Nombre del Vehículo -->
+                        <div class="form-group">
+                            <label for="nombreVehiculo">Nombre del Vehículo</label>
+                            <input type="text" class="form-control input-lg" name="nombreVehiculo" id="nombreVehiculo" placeholder="Ingresar nombre del vehículo" required>
+                        </div>
+                        <!-- Número de Placa -->
+                        <div class="form-group">
+                            <label for="numeroPlaca">Número de Placa</label>
+                            <input type="text" class="form-control input-lg" name="numeroPlaca" id="numeroPlaca" placeholder="Ingresar número de placa" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-primary">Registrar Entrada</button>
+                </div>
+            </form>
+
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-        <button type="submit" class="btn btn-primary">Registrar Entrada</button>
-    </div>
-</form>
+</div>
 
+<!-- Modal de confirmación de salida -->
+<div id="modalConfirmarSalida" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Salida</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Confirmas la salida de este vehículo?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmarSalida">Aceptar</button>
+            </div>
         </div>
     </div>
 </div>

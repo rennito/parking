@@ -1,3 +1,4 @@
+/*
 $(document).on("submit", "#formRegistrarEntradaVehiculo", function(e) {
     e.preventDefault();
 
@@ -51,3 +52,4 @@ $(document).on("submit", "#formRegistrarEntradaVehiculo", function(e) {
         }
     });
 });
+*/

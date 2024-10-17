@@ -32,32 +32,6 @@
 
 		}
 
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial"){
-
-			echo '<li>
-
-				<a href="categorias">
-
-					<i class="fa fa-th"></i>
-					<span>Categorías</span>
-
-				</a>
-
-			</li>
-
-			<li>
-
-				<a href="productos">
-
-					<i class="fa fa-product-hunt"></i>
-					<span>Productos</span>
-
-				</a>
-
-			</li>';
-
-		}
-
 
 		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
 
@@ -65,8 +39,8 @@
 
 				<a href="registroVehiculo">
 
-					<i class="fa fa-users"></i>
-					<span>Registro V</span>
+					<i class="fa fa-automobile"></i>
+					<span>Vehiculos</span>
 
 				</a>
 
@@ -81,25 +55,8 @@
 
 				<a href="registroentrada">
 
-					<i class="fa fa-users"></i>
-					<span>Entrada V</span>
-
-				</a>
-
-			</li>';
-
-		}
-
-
-
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
-
-			echo '<li>
-
-				<a href="clientes">
-
-					<i class="fa fa-users"></i>
-					<span>Clientes</span>
+					<i class="fa fa-product-hunt"></i>
+					<span>Registro Entrada</span>
 
 				</a>
 
@@ -133,17 +90,6 @@
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Administrar ventas</span>
-
-						</a>
-
-					</li>
-
-					<li>
-
-						<a href="crear-venta">
-							
-							<i class="fa fa-circle-o"></i>
-							<span>Crear venta</span>
 
 						</a>
 

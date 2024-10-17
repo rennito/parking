@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 header('Content-Type: application/json; charset=utf-8');
 
 // Incluye tus archivos de conexión y modelo
-require_once "../controladores/vehiculo.controlador.php";
-require_once "../modelos/vehiculo.modelo.php";
+require_once "../controladores/carroGeneraTicket.controlador.php";
+require_once "../modelos/carroGeneraTicket.modelo.php";
 
 // Verifica que se haya recibido el ID del vehículo por POST
 if (isset($_POST['id']) && !empty($_POST['id'])) {
@@ -13,7 +13,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     $idVehiculo = intval($_POST['id']); // Asegura que sea un número entero
 
     // Intenta marcar la salida del vehículo
-    $resultado = ControladorVehiculos::ctrMarcarSalidaVehiculo($idVehiculo);
+    $resultado = ControladorGeneraTicket::ctrMarcarSalidaVehiculo($idVehiculo);
 
     // Verifica si la operación fue exitosa
     if ($resultado && isset($resultado['success']) && $resultado['success']) {
@@ -24,7 +24,8 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
             "horaEntrada" => $resultado['horaEntrada'], // Hora de entrada
             "horaSalida" => $resultado['horaSalida'], // Hora de salida
             "tipoVehiculo" => $resultado['tipoVehiculo'], // Tipo de vehículo
-            "numeroPlaca" => $resultado['numeroPlaca'] // Número de placa
+            "numeroPlaca" => $resultado['numeroPlaca'], // Número de placa
+           
         ]);
     } else {
         // En caso de error en el proceso de registrar salida

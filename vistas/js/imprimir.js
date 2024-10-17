@@ -76,7 +76,8 @@ const respuesta = await fetch("http://localhost:8000/imprimir", {
   method: "POST",
   body: JSON.stringify({
     serial: "", // Si tienes un serial de impresora, agrégalo aquí
-    nombreImpresora: "Impresora pors", // Reemplaza con el nombre de tu impresora de 58 mm
+    //nombreImpresora: "Impresora pors", // Reemplaza con el nombre de tu impresora de 58 mm
+   nombreImpresora: "POS58 Printer", // Reemplaza con el nombre de tu impresora de 58 mm
     operaciones: listaDeOperaciones,
   }),
 });

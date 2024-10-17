@@ -53,6 +53,40 @@ session_start();
   <!-- Morris chart -->
   <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
 
+<!-- reportes -->
+<!-- Incluir CSS de daterangepicker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<!-- Incluir jQuery y Moment.js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+
+
+
+
+
+<!-- Incluir JS de daterangepicker -->
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+<!-- reportes -->
+
+<!-- GRAFICAS-->
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Raphael.js (dependencia de Morris.js) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+
+<!-- Morris.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
+<!-- GRAFICAS-->
+
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
@@ -140,12 +174,9 @@ CUERPO DOCUMENTO
     if(isset($_GET["ruta"])){
 
       if($_GET["ruta"] == "inicio" ||
-         $_GET["ruta"] == "usuarios" ||
-         $_GET["ruta"] == "categorias" ||
-         $_GET["ruta"] == "productos" ||
+         $_GET["ruta"] == "usuarios" ||               
          $_GET["ruta"] == "registroentrada" ||
-         $_GET["ruta"] == "registroVehiculo" ||         
-         $_GET["ruta"] == "clientes" ||         
+         $_GET["ruta"] == "registroVehiculo" ||    
          $_GET["ruta"] == "ventas" ||
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "editar-venta" ||
@@ -183,18 +214,18 @@ CUERPO DOCUMENTO
   ?>
 
 
-<script src="vistas/js/parking.js"></script>
-<script src="vistas/js/vehiculos.js"></script>
-<script src="vistas/js/registroEntradaVehiculo.js"></script>
 
-<!-- <script src="vistas/js/registroSalidaVehiculo.js"></script>-->
- <script src="vistas/js/registraSalidaVehiculoImpDirec.js"></script> 
-<script src="vistas/js/plantilla.js"></script>
+<script src="vistas/js/carro.js"></script>
+<script src="vistas/js/graficaVenta.js"></script>
+<script src="vistas/js/vehiculos.js"></script>
+<script src="vistas/js/registroVehiculo.js"></script>
+<script src="vistas/js/eliminarRegistroCarro.js"></script>
+<script src="vistas/js/eliminarTicket.js"></script>
+<script src="vistas/js/registroSalidaVehiculo.js"></script>
+ <!-- <script src="vistas/js/registroEntradaVehiculo.js"></script>-->
+<!-- <script src="vistas/js/registraSalidaVehiculoImpDirec.js"></script>-->
+ <!--<script src="vistas/js/registroEntradaVehiculoImpDirec.js"></script> -->
 <script src="vistas/js/usuarios.js"></script>
-<script src="vistas/js/categorias.js"></script>
-<script src="vistas/js/productos.js"></script>
-<script src="vistas/js/clientes.js"></script>
-<script src="vistas/js/ventas.js"></script>
 <script src="vistas/js/reportes.js"></script>
 
 </body>

@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', function() {
     // Evento para registrar un vehículo al enviar el formulario
     document.getElementById('formRegistrarVehiculo').addEventListener('submit', function(event) {
@@ -40,9 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         title: 'Vehículo registrado correctamente',
                         showConfirmButton: false,
                         timer: 1500
+                    }).then(() => {
+                        // Redireccionar después de registrar correctamente el vehículo
+                        window.location.href = 'registroVehiculo'; // Cambia la ruta según donde quieras redirigir
                     });
-                    // Limpiar el formulario después de registrar el vehículo
-                    document.getElementById('formRegistrarVehiculo').reset();
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -64,3 +66,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+*/

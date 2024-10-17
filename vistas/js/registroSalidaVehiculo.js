@@ -1,7 +1,13 @@
 $(document).ready(function() {
-    $(document).on('click', '.btnMarcarSalida', function() {
-        var idVehiculo = $(this).attr('idVehiculo');
+    var idVehiculo; // Variable global para almacenar el ID del vehículo
 
+    $(document).on('click', '.btnMarcarSalida', function() {
+        idVehiculo = $(this).attr('idVehiculo'); // Captura el ID del vehículo
+        $('#modalConfirmarSalida').modal('show'); // Muestra el modal de confirmación
+    });
+
+    // Cuando se hace clic en "Aceptar" en el modal
+    $('#confirmarSalida').on('click', function() {
         // Realiza la solicitud AJAX
         $.ajax({
             url: 'ajax/marcarSalida.ajax.php',
@@ -25,14 +31,8 @@ $(document).ready(function() {
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Abrir el PDF en una nueva ventana
-                            var win = window.open('pdf/parking-t58.php?id=' + idVehiculo, '_blank'); 
-
-                            // Esperar a que el PDF cargue y luego imprimir
-                            win.onload = function() {
-                                win.print(); // Imprimir automáticamente
-                            };
-
-                            location.reload(); // Recargar toda la página
+                            window.open('pdf/parking-t58.php?id=' + idVehiculo, '_blank');
+                            window.location.href = 'registroentrada'; // Redirigir a la página de registro de entradas
                         }
                     });
                 } else {
@@ -63,5 +63,6 @@ $(document).ready(function() {
                 });
             }
         });
+        $('#modalConfirmarSalida').modal('hide'); // Ocultar el modal después de hacer clic en Aceptar
     });
 });

@@ -1,5 +1,8 @@
 {
     "require": {
-        "tecnickcom/tcpdf": "^6.5"
+        "tecnickcom/tcpdf": "^6.5",
+        "phpoffice/phpspreadsheet": "^3.3",
+        "khanamiryan/qrcode-detector-decoder": "^2.0",
+        "endroid/qr-code": "^5.1"
     }
 }

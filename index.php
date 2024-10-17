@@ -1,24 +1,41 @@
 <?php
 
-require_once "controladores/parking.controlador.php";
-require_once "controladores/vehiculo.controlador.php";
+
+
+require_once "controladores/ventasTickets.controlador.php";
+require_once "controladores/graficaVentas.controlador.php";
+
+
+
+require_once "controladores/carro.controlador.php";
+require_once "modelos/carro.modelo.php";
+
+
+
+require_once "vendor/autoload.php";
+
 
 require_once "controladores/plantilla.controlador.php";
 require_once "controladores/usuarios.controlador.php";
-require_once "controladores/categorias.controlador.php";
-require_once "controladores/productos.controlador.php";
-require_once "controladores/clientes.controlador.php";
-require_once "controladores/ventas.controlador.php";
 
 
-require_once "modelos/parking.modelo.php";
-require_once "modelos/vehiculo.modelo.php";
+
+require_once "controladores/carroGeneraTicket.controlador.php";
+require_once "modelos/carroGeneraTicket.modelo.php";
+
+
+
+
+
+
+require_once "modelos/ventasTickets.modelo.php";
+require_once "modelos/graficaVentas.modelo.php";
 
 require_once "modelos/usuarios.modelo.php";
-require_once "modelos/categorias.modelo.php";
-require_once "modelos/productos.modelo.php";
-require_once "modelos/clientes.modelo.php";
-require_once "modelos/ventas.modelo.php";
+
+
+
+
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

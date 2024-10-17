@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/*$(document).ready(function () {
   // Al hacer clic en el botón de marcar salida
   $(document).on("click", ".btnMarcarSalida", function () {
       var idVehiculo = parseInt($(this).attr("idVehiculo"), 10);
@@ -89,3 +89,4 @@ $(document).ready(function () {
       });
   });
 });
+*/
